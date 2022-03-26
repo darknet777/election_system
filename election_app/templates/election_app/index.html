@@ -1,30 +1,26 @@
 {% extends 'election_app/base.html' %}
 {% block content %}
 
-<div class="text-center">
-    <div class="container">
-        <form>
-            <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+<div class="d-flex flex-column align-content-center text-center">
+    <div class="p-5 align-self-center">
+        <h2>Selamat datang di</h2>
+        <h1 class="fw-bold">Electronic Voting System</h1>
+        <h3 class="mb-5"><span class="fs-4">Untuk</span><br>"Pemilihan Kepala Desa Lolah Satu"</h3>
+        <h5 class="mb-4">Silakan melakukan verifikasi DPT untuk melakukan voting</h5>
+        <div class="d-flex flex-column">
+            <form>
+                <!-- No. DPT input -->
+                <div class="form-outline mb-4">
+                    <span>Nomor DPT</span>
+                    <input type="text" class="form-control text-center" placeholder="Masukkan nomor DPT">
+                </div>
 
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-        </form>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Validasi</button>
+            </form>
+        </div>
     </div>
 </div>
+
 
 {% endblock %}
