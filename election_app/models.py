@@ -11,3 +11,4 @@ class Candidate(models.Model):
 
 class Voter(models.Model):
     no_dpt = models.IntegerField()
+    vote = models.IntegerField(default=0)
