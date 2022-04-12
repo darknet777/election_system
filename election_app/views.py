@@ -9,11 +9,13 @@ def index(request):
     return render(request, 'election_app/index.html')
 
 def validation(request):
-    x = request.POST['no_dpt']
-    if x == type(int):
-        return HttpResponse('Butul')
-    else:
-        return HttpResponse('Salah')
+    if request.method == 'POST':
+        dpt = request.POST.get('no_dpt')
+        sql = Voter.objects.get(id=dpt, vote=0)
+        if dpt == sql:
+            return HttpResponse('No DPT valid')
+        else:
+            return render(request, 'election_app/statistic.html')
 
 def statistic(request):
     candidate = Candidate.objects.all().values()
