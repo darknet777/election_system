@@ -1,25 +1,36 @@
 {% extends 'election_app/base.html' %}
 {% block content %}
 
-<div class="d-flex flex-column align-content-center text-center">
-    <div class="p-5 align-self-center">
-        <h2>Selamat datang di</h2>
+<div class="container text-center">
+    <div class="pt-5">
+        {% for msg in messages %}
+        <div class="alert alert-danger alert-dismissible fade show container" role="alert">
+            {{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
         <h1 class="fw-bold">Electronic Voting System</h1>
-        <span class="fs-4">Untuk</span>
-        <h3 class="mb-5">"Pemilihan Kepala Desa Konoha"</h3>
-        <span class="fs-5 fw-bold mb-4">Silakan melakukan verifikasi DPT untuk melakukan voting</span>
-        <div class="d-flex flex-column">
-            <form action="validation/" method="POST">
-                {% csrf_token %}
-                <!-- No. DPT input -->
-                <div class="form-outline mb-4">
-                    <span>Nomor DPT</span>
-                    <input type="text" class="form-control text-center" name="no_dpt" placeholder="Masukkan nomor DPT">
+        <span class="fs-5 fst-italic">"Aplikasi voting berbasis web"</span>
+        <h3>"Pemilihan Kepala Desa Konoha"</h3>
+    </div>
+    <div class="pt-5">
+        <div class="row align-item-center h-100">
+            <div class="col-7 mx-auto">
+                <div class="card h-100 justify-content-center shadow">
+                    <div class="card-body">
+                        <h3>Silakan verifikasi nomor DPT</h3>
+                        <form action="validation/" class="row g-3 justify-content-center" method="POST">
+                            {% csrf_token %}
+                            <div class="col-auto">
+                                <input type="text" class="form-control text-center" name="no_dpt" placeholder="Nomor DPT" style="width: 20rem;">
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Validasi</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Validasi</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>
