@@ -24,12 +24,14 @@
                 </div>
                 {% endfor %}
             </div>
-            <table border="1">
-                <tr class="fw-bold">
-                    <td>No.</td>
-                    <td>Nama Calon</td>
-                    <td>Perolehan Suara</td>
-                </tr>
+            <table class="table shadow">
+                <thead class="table-dark">
+                    <tr class="fw-bold">
+                        <th>No.</th>
+                        <th>Nama Calon</th>
+                        <th>Perolehan Suara</th>
+                    </tr>
+                </thead>
                 {% for x in candidate %}
                 <tr>
                     <td>{{ x.id }}</td>
