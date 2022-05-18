@@ -1,0 +1,16 @@
+{% extends 'election_app/base.html' %}
+{% block content %}
+<div class="container text-center">
+    <div class="pt-5">
+        {% for msg in messages %}
+        <div class="alert alert-danger alert-dismissible fade show container" role="alert">
+            {{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        <h1 class="fw-bold">Electronic Voting System</h1>
+        <span class="fs-5 fst-italic">"Aplikasi voting berbasis web"</span>
+        <h3>"Pemilihan Kepala Desa Konoha"</h3>
+    </div>
+</div>
+{% endblock %}
