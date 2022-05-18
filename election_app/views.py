@@ -1,28 +1,42 @@
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 from django.shortcuts import redirect, render
-from django.template import loader
 from django.urls import reverse
-from .models import EVS_Admin, Candidate, Voter
+from django.template import loader
+from .models import Candidate, Voter
 
 def index(request):
     return render(request, 'election_app/index.html')
 
 def validation(request):
     if request.method == 'POST':
-        dpt = request.POST.get('no_dpt')
-        obj = Voter.objects.filter(no_dpt=dpt).exists()
-        if obj == True:
-            return HttpResponse('valid')
-        else:
+        dpt = request.POST['no_dpt']
+        object = Voter.objects.filter(no_dpt=dpt, vote='1').exists()
+        if object == True:
             return redirect('election-voting')
+        else:
+            messages.error(request, 'Nomor DPT tidak terdaftar! Silakan coba lagi.')
+            return redirect('election-home')
 
 def voting(request):
     candidate = Candidate.objects.all().values()
-    template = loader.get_template('election_app/voting.html')
+    if request.method == 'POST':
+        x = request.POST['name']
+        y = Candidate.objects.filter(id=x)
+        if y == True:
+            update = Candidate()
+
     context = {
         'candidate': candidate,
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'election_app/voting.html', context)
+
+def voterecord(request, id):
+    x = Candidate.objects.get(id=id)
+    votes = 1
+    x.votes += votes
+    x.save()
+    return HttpResponseRedirect(reverse('election-statistic'))
 
 def statistic(request):
     candidate = Candidate.objects.all().values()
@@ -32,5 +46,5 @@ def statistic(request):
     }
     return HttpResponse(template.render(context, request))
 
-def contact(request):
-    return render(request, 'election_app/contact.html')
+def about(request):
+    return render(request, 'election_app/about.html')
